@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Donos</title>
+</head>
+<body>
+    <h1>Lista de Donos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>CPF</th>
+                <th>Telefone</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dono in donos %}
+                <tr>
+                    <td>{{ dono.Nome }}</td>
+                    <td>{{ dono.Email }}</td>
+                    <td>{{ dono.CPF }}</td>
+                    <td>{{ dono.Telefone }}</td>
+                    <td>
+                        <a href="{{ url_for('editar_dono', id=dono.id) }}">Editar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('index') }}">Voltar para a página inicial</a>
+</body>
+</html>

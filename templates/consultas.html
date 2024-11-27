@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultas - PetShop CDL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Consultas</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/donos">Donos</a>
+            <a href="/animais">Animais</a>
+            <a href="/consultas">Consultas</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Lista de Consultas</h2>
+        <a href="/consultas/novo">Nova Consulta</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Descrição</th>
+                    <th>Animal</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for consulta in consultas %}
+                <tr>
+                    <td>{{ consulta[1] }}</td>
+                    <td>{{ consulta[2] }}</td>
+                    <td>{{ consulta[3] }}</td>
+                    <td>
+                        <a href="{{ url_for('editar_consulta', id=consulta[0]) }}">Editar</a>
+                        <a href="{{ url_for('deletar_consulta', id=consulta[0]) }}">Deletar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        <p>&copy; 2024 PetShop CDL</p>
+    </footer>
+</body>
+</html>

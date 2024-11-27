@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .actions a {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Donos</h1>
+    <a href="{{ url_for('novo_dono') }}">Adicionar Novo Dono</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>CPF</th>
+                <th>Telefone</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if donos %}
+                {% for dono in donos %}
+                    <tr>
+                        <td>{{ dono['nome'] }}</td>
+                        <td>{{ dono['email'] }}</td>
+                        <td>{{ dono['cpf'] }}</td>
+                        <td>{{ dono['telefone'] }}</td>
+                        <td class="actions">
+                            <a href="{{ url_for('editar_dono', id=dono['id']) }}">Editar</a> |
+                            <a href="{{ url_for('deletar_dono', id=dono['id']) }}" onclick="return confirm('Tem certeza que deseja deletar este dono?')">Deletar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="5" style="text-align: center;">Nenhum dono cadastrado.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</body>
+</html>

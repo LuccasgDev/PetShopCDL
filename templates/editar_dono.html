@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Dono</title>
+</head>
+<body>
+    <h1>Editar Dono</h1>
+    <form action="{{ url_for('editar_dono', id=dono.id) }}" method="post">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" id="nome" value="{{ dono.Nome }}" required>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" value="{{ dono.Email }}" required>
+        <br>
+        <label for="cpf">CPF:</label>
+        <input type="text" name="cpf" id="cpf" value="{{ dono.CPF }}" required>
+        <br>
+        <label for="telefone">Telefone:</label>
+        <input type="text" name="telefone" id="telefone" value="{{ dono.Telefone }}" required>
+        <br>
+        <button type="submit">Salvar</button>
+    </form>
+    <a href="{{ url_for('listar_donos') }}">Voltar para a lista de donos</a>
+</body>
+</html>

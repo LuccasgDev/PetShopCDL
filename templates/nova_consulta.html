@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Nova Consulta</title>
+</head>
+<body>
+    <h1>Cadastrar Nova Consulta</h1>
+    <form method="POST">
+        <label for="data">Data da Consulta:</label>
+        <input type="date" name="data" required><br>
+
+        <label for="descricao">Descrição:</label>
+        <textarea name="descricao" required></textarea><br>
+
+        <label for="animal_id">Selecionar Animal:</label>
+        <select name="animal_id" required>
+            {% for animal in animais %}
+                <option value="{{ animal.id }}">{{ animal.nome }} ({{ animal.tipo }})</option>
+            {% endfor %}
+        </select><br>
+
+        <button type="submit">Salvar Consulta</button>
+    </form>
+</body>
+</html>

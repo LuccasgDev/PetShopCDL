@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Lista de Animais</h1>
+    {% if animais %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Tipo</th>
+                    <th>Idade</th>
+                    <th>Peso</th>
+                    <th>Espécie</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for animal in animais %}
+                    <tr>
+                        <td>{{ animal.nome }}</td>
+                        <td>{{ animal.tipo }}</td>
+                        <td>{{ animal.idade }}</td>
+                        <td>{{ animal.peso }}</td>
+                        <td>{{ animal.especie }}</td>
+                        <td>
+                            <a href="{{ url_for('editar_animal', id=animal['id']) }}">Editar</a> |
+                            <a href="{{ url_for('deletar_animal', id=animal['id']) }}">Deletar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Não há animais registrados.</p>
+    {% endif %}
+{% endblock %}
